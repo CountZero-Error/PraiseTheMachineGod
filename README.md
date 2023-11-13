@@ -2,10 +2,10 @@
 ## Praise The God of All Machines , The Mighty Omnissiah! May the bug never exist!
 
 # Installation
-```pip install PraiseTheMachineGod```
+```pip install OmnissiahPrayer```
 
 # Usage
-```from Pray import prayer```  
+```from Prayer import prayer```  
 ```prayer().toPray()```
 
 # Content

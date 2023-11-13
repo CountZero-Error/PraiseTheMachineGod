@@ -5,7 +5,7 @@
 ```pip install PraiseTheMachineGod```
 
 # Usage
-```from Pray import prayer```
+```from Pray import prayer```  
 ```prayer().toPray()```
 
 # Content

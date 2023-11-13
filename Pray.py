@@ -1,4 +1,10 @@
-holy_img = '''
+import time
+from random import seed
+from random import choice
+
+class pray:
+   def __init__(self):
+      self.holy_img = '''
                                             ;@#@@$|;'`.                                            
                                             ;@#############&|:`                                    
                                             ;@####################|`                               
@@ -53,8 +59,9 @@ holy_img = '''
                                             :@###################@###$;.                           
                                             :@############@@####@|'                                
                                             ;@#@@########@%;'.                                     
-'''
-holy_words = [
+                                            '''
+
+      self.holy_words = [
    ['"From weakness of the mind, Omnissiah save us!"',
     '"From the lies of the Antipath, circuit preserve us!"',
     '"From the rage of the Beast, iron protect us!"',
@@ -80,20 +87,21 @@ holy_words = [
     '"Pull the Lever forward to engage the Piston and Pump..."',
     '"Toll the Great Bell Twice! With push of Button fire the Engine And spark Turbine into life..."',
     '"Toll the Great Bell Thrice! Sing Praise to the God of All Machines!"']
-]
+    ]
+      
+   def toPray(self):
+      print(self.holy_img)
 
-import time
-from random import seed
-from random import choice
+      seed(time.time())
+      prayer = choice(self.holy_words)
+      for holy_content in prayer:
+         print(f'   {holy_content}')
+         time.sleep(1)
 
-# We shall praise the great Omnissiah!
-print(holy_img)
+      print('\n   [*] PRAISE THE GOD OF ALL MACHINES - THE MIGHTY OMNISSIAH!!!\n\n')
 
-seed(time.time())
-prayer = choice(holy_words)
-for holy_content in prayer:
-   print(f'   {holy_content}')
-   time.sleep(1)
-
-print('\n   [*] PRAISE THE GOD OF ALL MACHINES - THE MIGHTY OMNISSIAH!!!')
+if __name__ == '__main__':
+   # We shall praise the great Omnissiah!
+   prayer = pray()
+   prayer.toPray()
    

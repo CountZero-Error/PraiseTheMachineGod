@@ -1,6 +1,14 @@
 # PraiseTheMachineGod
 ## Praise The God of All Machines , The Mighty Omnissiah! May the bug never exist!
 
+# Installation
+```pip install praiseOmnissiah```
+
+# Usage
+```Pray.toPray()```
+
+# Content
+
 <pre>
                                               ;@#@@$|;'`.                                            
                                             ;@#############&|:`                                    

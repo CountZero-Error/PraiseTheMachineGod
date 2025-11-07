@@ -1,0 +1,59 @@
+# --- Python cache ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Build artifacts ---
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- PyInstaller ---
+*.manifest
+*.spec
+
+# --- Unit test / coverage ---
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+htmlcov/
+
+# --- Virtual environments ---
+.env
+.venv
+env/
+venv/
+ENV/
+
+# --- IDE / Editor junk ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+
+# --- macOS system files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# --- Logs and temp files ---
+*.log
+*.tmp
+*.temp
+*.out
+
+# --- Package signing / API tokens ---
+.pypirc
+*.key
+*.pem
+*.token
+
+# --- Jupyter notebooks checkpoints ---
+.ipynb_checkpoints/
+
+# --- Ignore local test wheels ---
+*.whl

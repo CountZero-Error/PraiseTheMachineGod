@@ -2,6 +2,7 @@ from random import choice, seed
 import random
 import json
 import time
+import os
 
 
 holy_img = """
@@ -62,13 +63,18 @@ holy_img = """
 """
 
 
-class Prayer:
+class prayer:
     def __init__(self, halt_speed: float=0.005,):
         self.holy_img = holy_img
         # Width of the icon, used to center all text so it aligns with the skull
         lines = self.holy_img.splitlines()
         self.scroll_width = max(len(line) for line in lines) if lines else 60
-        with open('./holy_words.json', 'r') as filo:
+        
+        # Locate the JSON file inside the installed package
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        json_path = os.path.join(base_path, 'holy_words.json')
+
+        with open(json_path, 'r', encoding='utf-8') as filo:
             self.holy_words = json.load(filo)['holy_words']
         
         self.halt_speed = halt_speed
@@ -175,5 +181,5 @@ class Prayer:
 
 if __name__ == "__main__":
     # We shall praise the great Omnissiah!
-    prayer = Prayer()
+    prayer = prayer()
     prayer.pray()

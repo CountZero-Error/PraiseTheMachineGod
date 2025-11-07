@@ -26,6 +26,7 @@ Or clone manually:
 ```bash
 git clone https://github.com/CountZeroCode/PraiseTheMachineGod.git
 cd PraiseTheMachineGod
+pip install .
 ```
 
 ---
@@ -33,10 +34,10 @@ cd PraiseTheMachineGod
 ## ⚙️ Usage
 
 ```python
-from OmnissiahPrayer import prayer
+from OmnissiahPrayer import pray
 
 # Begin your devotional sequence
-prayer.pray()
+pray()
 ```
 
 Each invocation generates a random sacred litany from `holy_words.json`. Occasionally, the Machine Spirit will speak in **binary code (01001000...)**, faster and more intense than mortal speech.

@@ -95,17 +95,27 @@ class Prayer:
             "⚙ SYSTEM SANCTIFIED ⚙",
         ]
 
-    def _log(self, message: str):
+    def _log(self, message: str, fast: bool = False):
+        # Optionally speed up output (used for binary mode)
+        delay_base = self.halt_speed / 5 if fast else self.halt_speed
         for element in message:
             print(element, end='', flush=True)
             # Slightly randomize the delay for a more "alive" machine-spirit effect
-            time.sleep(self.halt_speed + random.uniform(0, self.halt_speed))
+            time.sleep(delay_base + random.uniform(0, delay_base))
         
         print('\n')
 
     def _print_border(self):
         border = "".join(random.choice(self.glyphs) for _ in range(self.scroll_width))
         print(f"{self.red}{self.bold}{border}{self.reset}")
+
+    def _to_binary(self, text: str, group: int = 11) -> str:
+        # Convert each character to its 8-bit ASCII binary form, wrapped to avoid overlong lines
+        bits = [f"{ord(c):08b}" for c in text]
+        lines = []
+        for i in range(0, len(bits), group):
+            lines.append(' '.join(bits[i:i+group]))
+        return '\n'.join(lines)
 
     def pray(self):
         # Clear screen for a dramatic entrance
@@ -127,14 +137,29 @@ class Prayer:
 
         seed(time.time())
         prayer = choice(self.holy_words)
+
+        # 50% chance to activate binary translation
+        binary_mode = (random.random() < 0.5)
+        # binary_mode = True
+
         for index, holy_content in enumerate(prayer):
-            centered = holy_content.center(self.scroll_width)
-            self._log(f"{centered}")
+            if binary_mode:
+                # Convert the raw sentence to binary and wrap it into shorter lines
+                content = self._to_binary(holy_content)
+                # In binary mode, print much faster
+                self._log(f"{content}", fast=True)
+            else:
+                content = holy_content.center(self.scroll_width)
+                self._log(f"{content}")
+
             # Insert a canticle halfway through the prayer
             if index == len(prayer) // 2 and self.chants:
                 chant = random.choice(self.chants)
-                centered_chant = chant.center(self.scroll_width)
-                self._log(f"{self.red}{self.bold}{centered_chant}{self.reset}")
+                if binary_mode:
+                    chant_content = self._to_binary(chant)
+                else:
+                    chant_content = chant.center(self.scroll_width)
+                self._log(f"{self.red}{self.bold}{chant_content}{self.reset}", fast=binary_mode)
 
         # Footer like the bottom of the scroll
         self._print_border()

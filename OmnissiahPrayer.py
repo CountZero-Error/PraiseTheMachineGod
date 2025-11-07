@@ -1,10 +1,9 @@
+from random import choice, seed
+import json
 import time
-from random import seed
-from random import choice
 
-class pray:
-   def __init__(self):
-      self.holy_img = '''
+
+holy_img = """
                                             ;@#@@$|;'`.                                            
                                             ;@#############&|:`                                    
                                             ;@####################|`                               
@@ -59,49 +58,36 @@ class pray:
                                             :@###################@###$;.                           
                                             :@############@@####@|'                                
                                             ;@#@@########@%;'.                                     
-                                            '''
+"""
 
-      self.holy_words = [
-   ['"From weakness of the mind, Omnissiah save us!"',
-    '"From the lies of the Antipath, circuit preserve us!"',
-    '"From the rage of the Beast, iron protect us!"',
-    '"From the temptations of the flesh, silica cleanse us!"',
-    '"From the ravages of time, anima shield us!"',
-    '"From this rotting cage of biomatter, Machine god, set us free!"'],
 
-   ['"There is no truth in flesh, only betrayal."',
-    '"There is no strength in flesh, only weakness."',
-    '"There is no Constancy in flesh, only decay."',
-    '"There is no certainty in flesh, but death."'],
+class Prayer:
+    def __init__(self, halt_speed: float=0.01,):
+        self.holy_img = holy_img
+        with open('./holy_words.json', 'r') as filo:
+            self.holy_words = json.load(filo)['holy_words']
+        
+        self.halt_speed = halt_speed
 
-   ['"From the moment I understood the weakness of my flesh, it disgusted me."',
-    '"I craved the strength and certainty of steel."',
-    '"I aspired into the purity of the blessed machine."',
-    '"Your kind cling to your flesh, as if it will not decay and fail you."',
+    def _log(self, message: str):
+        for element in message:
+            print(element, end='', flush=True)
+            time.sleep(self.halt_speed)
+        
+        print('\n')
 
-    '"One day the crude biomass that you call a temple will wither, and you will beg my kind to save you."'],
-   ['"But I am already saved. For the Machine is Immortal."',
-    '"Even in death, I serve the Omnissiah."'],
+    def pray(self):
+        print(self.holy_img)
 
-   ['"Toll the Great Bell Once!"',
-    '"Pull the Lever forward to engage the Piston and Pump..."',
-    '"Toll the Great Bell Twice! With push of Button fire the Engine And spark Turbine into life..."',
-    '"Toll the Great Bell Thrice! Sing Praise to the God of All Machines!"']
-    ]
-      
-   def toPray(self):
-      print(self.holy_img)
+        seed(time.time())
+        prayer = choice(self.holy_words)
+        for holy_content in prayer:
+            self._log(f"\t{holy_content}")
 
-      seed(time.time())
-      prayer = choice(self.holy_words)
-      for holy_content in prayer:
-         print(f'   {holy_content}')
-         time.sleep(1)
+        self._log("\n\t[*] PRAISE THE GOD OF ALL MACHINES - THE MIGHTY OMNISSIAH!!!\n\n")
 
-      print('\n   [*] PRAISE THE GOD OF ALL MACHINES - THE MIGHTY OMNISSIAH!!!\n\n')
 
-if __name__ == '__main__':
-   # We shall praise the great Omnissiah!
-   prayer = pray()
-   prayer.toPray()
-   
+if __name__ == "__main__":
+    # We shall praise the great Omnissiah!
+    prayer = Prayer()
+    prayer.pray()

@@ -119,7 +119,7 @@ class Prayer:
 
     def pray(self):
         # Clear screen for a dramatic entrance
-        print("\033[2J\033[H", end='')
+        # print("\033[2J\033[H", end='')
         # Cog-skull sigil in red, like a purity seal rosette
         print(f"{self.red}{self.bold}{self.holy_img}{self.reset}")
 
